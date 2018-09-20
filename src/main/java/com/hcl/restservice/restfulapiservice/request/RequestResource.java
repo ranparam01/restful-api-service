@@ -2,6 +2,7 @@ package com.hcl.restservice.restfulapiservice.request;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -17,33 +18,31 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class RequestResource {
-
+	
 	@Autowired
-	private RequestDaoService service;
+	private RequestRepository requestRepository;
 
 	@GetMapping("/requests")
 	public List<Request> retriveAllRequests() {
-		return service.findAll();
+		return requestRepository.findAll();
 	}
 
 	@GetMapping("/requests/{id}")
-	public Request retriveRequest(@PathVariable int id) {
-		Request request=service.findOne(id);
-		if(request==null) 
+	public Optional<Request> retriveRequest(@PathVariable int id) {
+		Optional<Request> request=requestRepository.findById(id);
+		if(!request.isPresent()) 
 			throw new RequestNotFoundException("id-"+ id);
 		return request;
 	}
 	
 	@DeleteMapping("/requests/{id}")
 	public void deleteRequest(@PathVariable int id) {
-		Request request=service.deleteById(id);
-		if(request==null) 
-			throw new RequestNotFoundException("id-"+ id);
+	requestRepository.deleteById(id);
 	}
 
 	@PostMapping("/requests")
 	public ResponseEntity<Object> createRequests(@Valid @RequestBody Request request) {
-		Request savedRequest = service.save(request);
+		Request savedRequest = requestRepository.save(request);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(savedRequest.getId()).toUri();

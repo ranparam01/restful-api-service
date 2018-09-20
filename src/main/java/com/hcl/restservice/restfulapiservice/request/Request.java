@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
-import com.hcl.restservice.restfulapiservice.user.User;
 
 @Entity
 public class Request {
@@ -18,7 +17,7 @@ public class Request {
 
 	private Date requestDate;
 
-	private String UserName;
+	private String userName;
 
 	private String clientID;
 	private String clientSecret;
@@ -43,7 +42,7 @@ public class Request {
 		super();
 		this.id = id;
 		this.requestDate = requestDate;
-		UserName = userName;
+		this.userName = userName;
 		this.clientID = clientID;
 		this.clientSecret = clientSecret;
 		this.clusterName = clusterName;
@@ -68,11 +67,11 @@ public class Request {
 	}
 
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
 
 	public String getClientID() {
@@ -117,9 +116,11 @@ public class Request {
 
 	@Override
 	public String toString() {
-		return "Request [id=" + id + ", requestDate=" + requestDate + ", UserName=" + UserName + ", clientID="
+		return "Request [id=" + id + ", requestDate=" + requestDate + ", userName=" + userName + ", clientID="
 				+ clientID + ", clientSecret=" + clientSecret + ", clusterName=" + clusterName + ", dnsPrefix="
 				+ dnsPrefix + ", resourceGroupName=" + resourceGroupName + "]";
 	}
+
+	
 
 }
