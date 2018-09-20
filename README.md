@@ -4,4 +4,4 @@ This project consists of API's for creation of a self service portal that takes 
 
 ##Description
 
-Work in progress
+Work in progress - To be updated
