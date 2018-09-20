@@ -15,11 +15,11 @@ public class RequestDaoService {
 	private static int requestCount = 3;
 
 	static {
-		requests.add(new Request(1, new Date(), "53ba6f2b-6d52-4f5c-8ae0-7adc20808854",
+		requests.add(new Request(1, new Date(),"sam", "53ba6f2b-6d52-4f5c-8ae0-7adc20808854",
 				"NMubGVcDqkwwGnCs6fa01tqlkTisfUd4pBBYgcxxx=", "aks-system1", "myprefix", "jenkins01"));
-		requests.add(new Request(2, new Date(), "53ba6f2b-6d52-4f5c-8ae0-7adc20808854",
+		requests.add(new Request(2, new Date(),"Jack", "53ba6f2b-6d52-4f5c-8ae0-7adc20808854",
 				"NMubGVcDqkwwGnCs6fa01tqlkTisfUd4pBBYgcxxx=", "aks-system2", "myprefix", "jenkins02"));
-		requests.add(new Request(3, new Date(), "53ba6f2b-6d52-4f5c-8ae0-7adc20808854",
+		requests.add(new Request(3, new Date(),"Tom", "53ba6f2b-6d52-4f5c-8ae0-7adc20808854",
 				"NMubGVcDqkwwGnCs6fa01tqlkTisfUd4pBBYgcxxx=", "aks-system3", "myprefix", "jenkins03"));
 	}
 
