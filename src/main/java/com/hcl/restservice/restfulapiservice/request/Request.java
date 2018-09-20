@@ -2,35 +2,48 @@ package com.hcl.restservice.restfulapiservice.request;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
+import com.hcl.restservice.restfulapiservice.user.User;
+
+@Entity
 public class Request {
 
+	@Id
+	@GeneratedValue
 	private Integer id;
-	
+
 	private Date requestDate;
+
+	private String UserName;
 
 	private String clientID;
 	private String clientSecret;
-	
-	@Size(min=4, message="cluster name should have more than 4 characters")
+
+	@Size(min = 4, message = "cluster name should have more than 4 characters")
 	private String clusterName;
-	
-	@Size(min=4, message="dns prefix should have more than 4 characters")
+
+	@Size(min = 4, message = "dns prefix should have more than 4 characters")
 	private String dnsPrefix;
-	
-	@Size(min=5, message="Resource group should have more than 4 characters")
+
+	@Size(min = 5, message = "Resource group should have more than 4 characters")
 	private String resourceGroupName;
 
-   protected Request() {
-	   
-   }
-	
-	public Request(Integer id, Date requestDate, String clientID, String clientSecret, String clusterName,
-			String dnsPrefix, String resourceGroupName) {
+	protected Request() {
+
+	}
+
+	public Request(Integer id, Date requestDate, String userName, String clientID, String clientSecret,
+			@Size(min = 4, message = "cluster name should have more than 4 characters") String clusterName,
+			@Size(min = 4, message = "dns prefix should have more than 4 characters") String dnsPrefix,
+			@Size(min = 5, message = "Resource group should have more than 4 characters") String resourceGroupName) {
 		super();
 		this.id = id;
 		this.requestDate = requestDate;
+		UserName = userName;
 		this.clientID = clientID;
 		this.clientSecret = clientSecret;
 		this.clusterName = clusterName;
@@ -52,6 +65,14 @@ public class Request {
 
 	public void setRequestDate(Date requestDate) {
 		this.requestDate = requestDate;
+	}
+
+	public String getUserName() {
+		return UserName;
+	}
+
+	public void setUserName(String userName) {
+		UserName = userName;
 	}
 
 	public String getClientID() {
@@ -96,9 +117,9 @@ public class Request {
 
 	@Override
 	public String toString() {
-		return "Request [id=" + id + ", requestDate=" + requestDate + ", clientID=" + clientID + ", clientSecret="
-				+ clientSecret + ", clusterName=" + clusterName + ", dnsPrefix=" + dnsPrefix + ", resourceGroupName="
-				+ resourceGroupName + "]";
+		return "Request [id=" + id + ", requestDate=" + requestDate + ", UserName=" + UserName + ", clientID="
+				+ clientID + ", clientSecret=" + clientSecret + ", clusterName=" + clusterName + ", dnsPrefix="
+				+ dnsPrefix + ", resourceGroupName=" + resourceGroupName + "]";
 	}
 
 }
